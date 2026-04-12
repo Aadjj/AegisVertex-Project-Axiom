@@ -11,8 +11,8 @@ Core Philosophy
 Project Axiom operates on the principle that modern threats move faster than human analysts. By leveraging an Isolation Forest for noise qualification and a Graph based predictive engine, the system doesn't just react to alerts, it anticipates the attacker's next move (the Vertex) and enforces security truths (Axioms) across the network perimeter.
 
 Architectural Breakdown
-
 aegisvertex_projectaxiom/
+
 ├── core/ 
 
 ├── modules/ 
@@ -40,4 +40,4 @@ Shadow Mode: A safety first execution gate that allows for "dry run" testing of 
 Self Healing Recovery: Automatic rollback of defensive actions if they cause unintended disruption to legitimate business traffic.
 
 AegisVertex: Project Axiom 
-Developed for Advanced Cybersecurity Operations by Syed Adnan Ahmed
+Developed for Advanced Cybersecurity Operations by Syed Adnan Ahmed.
