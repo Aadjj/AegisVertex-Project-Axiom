@@ -1,0 +1,35 @@
+name: "Advanced Persistent Threat Containment"
+description: "Standard operating procedure for high-confidence APT detection"
+version: "1.0.0"
+enabled: true
+
+config:
+  severity_threshold: 75
+  auto_rollback: true
+
+steps:
+  - name: "Isolate Host"
+    action: "isolate_host"
+    approval: true
+    description: "Sever network connectivity for the affected endpoint via EDR or VLAN quarantine"
+    timeout: 300
+    on_failure: "halt"
+
+  - name: "Block Malicious IP"
+    action: "block_ip"
+    approval: false
+    description: "Inject source/destination IOCs into edge firewall blocklist (Palo Alto/Fortigate)"
+    retry_count: 3
+
+  - name: "Snapshot Volatile Memory"
+    action: "capture_forensics"
+    approval: false
+    description: "Trigger remote memory dump and collect $MFT/Registry hives for forensic analysis"
+    artifacts:
+      - "memdump.raw"
+      - "triage.zip"
+
+  - name: "Disable Compromised Account"
+    action: "disable_user"
+    approval: true
+    description: "Suspend Active Directory/Okta account associated with the offense"

@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "incident_id": "{{ metadata.id }}",
+    "generation_timestamp": "{{ metadata.timestamp }}",
+    "orchestrator_version": "{{ metadata.framework }}"
+  },
+  "executive_summary": {
+    "threat_classification": "{{ summary.type }}",
+    "aggregate_threat_score": {{ summary.highest_threat_score | default(0) }},
+    "impact_assessment": "{{ summary.desc }}",
+    "total_events_processed": {{ summary.total_incidents }}
+  },
+  "remediation_actions": [
+    {% for action in actions_taken %}
+    {
+      "execution_id": "{{ action.execution_id | default('N/A') }}",
+      "playbook": "{{ action.playbook }}",
+      "actions_executed": {{ action.actions | tojson }},
+      "outcome": "{{ action.status }}",
+      "completed_at": "{{ action.timestamp }}"
+    }{{ "," if not loop.last }}
+    {% endfor %}
+  ],
+  "forensic_vault_manifest": [
+    {% for evidence in forensics_manifest %}
+    {
+      "event_id": {{ evidence.event_id }},
+      "timestamp": "{{ evidence.timestamp }}",
+      "indicators_of_compromise": {{ evidence.tags | filter_tags | tojson if evidence.tags is iterable else "[]" }},
+      "status": "sealed_and_hashed"
+    }{{ "," if not loop.last }}
+    {% endfor %}
+  ],
+  "compliance_notes": "All actions logged and hashed in accordance with internal SOC data retention policies."
+}

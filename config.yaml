@@ -1,0 +1,26 @@
+pipeline:
+  polling_interval: 60
+  max_concurrent_tasks: 5
+  log_retention_days: 30
+
+thresholds:
+  noise_filter_sensitivity: 0.75
+  apt_confidence_minimum: 80
+  auto_isolate_score: 95
+
+honeypots:
+  ips:
+    - "192.168.1.50"
+    - "10.0.0.22"
+  users:
+    - "admin_backup"
+    - "sql_svc_account"
+
+intelligence:
+  refresh_interval_hours: 1
+  cache_db: "cache/threat_intel.db"
+
+storage:
+  evidence_dir: "data/evidence"
+  reports_dir: "data/reports"
+  model_dir: "models"
