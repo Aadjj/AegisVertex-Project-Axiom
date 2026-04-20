@@ -39,5 +39,8 @@ Deception Integration: Built in support for Honey Tokens and breadcrumbs to catc
 Shadow Mode: A safety first execution gate that allows for "dry run" testing of neutralization playbooks in production environments.
 Self Healing Recovery: Automatic rollback of defensive actions if they cause unintended disruption to legitimate business traffic.
 
+Note: This code is part of a much larger project. For any other details, please contact:
+Email: sydadnanahmed41@gmail.com | Phone: +91 8106109488
+
 AegisVertex: Project Axiom 
 Developed for Advanced Cybersecurity Operations by Syed Adnan Ahmed.
